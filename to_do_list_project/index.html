@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>רשימת מטלות</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h2>המשימות שלי</h2>
+
+      <form class="todoForm" id="todoForm">
+        <input
+          id="taskInput"
+          placeholder="הוספת משימה חדשה..."
+          type="text"
+          autofocus
+        />
+        <button id="addButton" type="submit">הוספה</button>
+      </form>
+
+      <ul id="tasksList"></ul>
+    </main>
+
+    <nav>
+      <a id="homePgeLink" href="../index.html">חזרה לדף הבית</a>
+    </nav>
+
+    <script src="app.js"></script>
+  </body>
+</html>

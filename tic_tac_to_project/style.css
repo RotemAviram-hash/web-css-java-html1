@@ -1,0 +1,272 @@
+/* 1. VARIABLES (ROOT) */
+:root {
+  --bg-gradient: linear-gradient(135deg, #e0f2fe 0%, #fffbeb 100%);
+  --text-main: #334155;
+  --text-muted: #64748b;
+
+  /* צבעי ה-XO המדויקים */
+  --x-color: #48bb78;
+  --o-color: #f6ad55;
+
+  /* דגשים לכפתורים ועיצוב */
+  --accent-btn: #bfd6af;
+  --accent-blue-border: #00ccff;
+
+  /* חישוב גודל חכם: לוקח את המינימום בין רוחב לגובה כדי שכלום לא ייחתך */
+  --board-size: min(85vw, 55vh, 400px);
+
+  --board-radius: 30px;
+  --cell-radius: clamp(12px, 2.5vw, 20px);
+
+  --transition-main: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --shadow-light: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --shadow-dark: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* 2. BASE RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* שימוש ב-svh פותר את בעיית ה"חיתוך" בדפדפנים של ניידים */
+  min-height: 100svh;
+  background: var(--bg-gradient);
+  font-family: "Segoe UI", "Assistant", sans-serif;
+  color: var(--text-main);
+  padding: 15px;
+  overflow: hidden; /* מונע גלילה מיותרת */
+}
+
+/* 3. GAME CONTAINER */
+.game {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(10px, 3vh, 25px);
+  width: 100%;
+  max-height: 100%;
+}
+
+h1 {
+  font-size: clamp(1.8rem, 7vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  margin-bottom: 5px;
+}
+
+/* 4. BOARD & CELLS*/
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+
+  width: var(--board-size);
+  height: var(--board-size);
+
+  gap: clamp(8px, 2vw, 15px);
+  padding: clamp(12px, 3vw, 25px);
+  border-radius: var(--board-radius);
+  background: #ffffff;
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.12),
+    0 0 0 2px rgba(0, 0, 0, 0.05);
+
+  border: 2px solid #e2e8f0;
+}
+
+.cell {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--cell-radius);
+  background: #f8fafc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+  border: 1px solid #cbd5e1;
+
+  box-shadow:
+    inset 2px 2px 5px rgba(0, 0, 0, 0.05),
+    inset -2px -2px 5px rgba(255, 255, 255, 1);
+}
+
+.cell:hover {
+  transform: scale(0.98);
+  background: #f1f5f9;
+  border-color: var(--accent-blue-border);
+  box-shadow: inset 4px 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* 5. MARKS - הציור הגרפי המלא של X ו-O */
+.mark {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: 60%;
+  animation: markPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes markPop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+    rotate: -15deg;
+  }
+  70% {
+    transform: scale(1.1);
+    rotate: 5deg;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    rotate: 0deg;
+  }
+}
+
+/* X - שני פסים */
+.x-player .mark::before,
+.x-player .mark::after {
+  content: "";
+  position: absolute;
+  width: 12%;
+  height: 100%;
+  background-color: var(--x-color);
+  border-radius: 10px;
+}
+.x-player .mark::before {
+  transform: rotate(45deg);
+}
+.x-player .mark::after {
+  transform: rotate(-45deg);
+}
+
+/* O - טבעת */
+.o-player .mark::before {
+  content: "";
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  /* עובי משתנה יחסי לגודל הלוח */
+  border: calc(var(--board-size) * 0.025) solid var(--o-color);
+  background-color: transparent;
+  box-sizing: border-box;
+}
+
+/* 6. HOME LINK - Glassmorphism Style */
+#homePgeLink {
+  position: fixed;
+  top: clamp(10px, 2vh, 25px);
+  right: clamp(10px, 2vw, 25px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+#homePgeLink:hover {
+  background: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* 7. MODAL - הודעה על המסך */
+#gameMessage {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+#gameMessage > div {
+  background: white;
+  padding: clamp(20px, 5vw, 40px);
+  border-radius: 25px;
+  text-align: center;
+  box-shadow: var(--shadow-dark);
+  animation: modalPop 0.4s ease;
+  width: 85%;
+  max-width: 350px;
+}
+
+#gameMsg {
+  font-size: clamp(1.5rem, 5vw, 2.2rem);
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: var(--text-main);
+}
+
+@keyframes modalPop {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* 8. BUTTONS */
+#exitGameMsgBtn {
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 10px;
+  background: var(--accent-btn);
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#clearBtn {
+  margin-top: 5px;
+  width: min(220px, 70vw);
+  padding: 14px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--text-main);
+  border: 2px solid var(--accent-blue-border);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: var(--transition-main);
+}
+
+#clearBtn:hover {
+  box-shadow: 0 0 15px rgba(0, 204, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.hidden {
+  display: none !important;
+}

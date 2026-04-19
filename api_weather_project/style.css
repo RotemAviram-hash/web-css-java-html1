@@ -1,0 +1,226 @@
+/* ===== הגדרות משתנים (Theme) ===== */
+:root {
+  --primary-blue: #3b82f6;
+  --light-blue: #e0edff;
+  --dark-blue: #1e3a8a;
+  --bg-gray: #f4f7fb;
+  --text-main: #1f2937;
+  --text-muted: #6b7280;
+  --border-color: #d1d5db;
+  --white: #ffffff;
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-round: 50px;
+  --transition: 0.3s ease;
+  --shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* ===== בסיס ===== */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--bg-gray);
+  color: var(--text-main);
+  direction: rtl;
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+/* ברירת מחדל למסכים גדולים: ללא גלילה */
+body {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+#container {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 3fr 2fr;
+  grid-template-areas:
+    "header header"
+    "map buttons";
+  gap: 20px;
+  width: 100%;
+  height: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* ===== כותרת ===== */
+#txt-for-Client {
+  grid-area: header;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+h1 {
+  margin: 0 0 5px 0;
+  font-size: clamp(1.2rem, 4vw, 2rem);
+  font-weight: 800;
+}
+
+#wether-msg {
+  font-size: 0.95rem;
+  color: var(--dark-blue);
+  background: var(--light-blue);
+  padding: 10px 20px;
+  border-radius: 10px;
+  display: inline-block;
+  border: 1px solid var(--primary-blue);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.15);
+}
+
+/* ===== מפה ===== */
+#map-container {
+  grid-area: map;
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--primary-blue);
+  min-height: 0;
+  overflow: hidden;
+  background: #eee;
+  box-shadow: var(--shadow);
+}
+
+/* ===== פאנל כפתורים ===== */
+#location-by-buttons {
+  grid-area: buttons;
+  background: var(--white);
+  padding: 24px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  box-shadow: var(--shadow);
+}
+
+#location-by-buttons h3 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  color: var(--dark-blue);
+  border-bottom: 2px solid var(--light-blue);
+  padding-bottom: 12px;
+  margin-bottom: 15px;
+  flex-shrink: 0;
+}
+
+/* ===== רשת הכפתורים המעוצבת ===== */
+#major-cities {
+  flex-grow: 1;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 12px;
+  padding-right: 4px; /* מקום לסקרולר */
+}
+
+/* עיצוב כפתור */
+.major-cities-button {
+  background: var(--light-blue);
+  color: var(--dark-blue);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  padding: 14px 10px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.major-cities-button:hover {
+  background: var(--primary-blue);
+  color: var(--white);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(59, 130, 246, 0.3);
+  border-color: var(--primary-blue);
+}
+
+.major-cities-button:active {
+  transform: translateY(-1px);
+}
+
+/* ===== כפתור דף הבית הצף ===== */
+#homePgeLink {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius-round);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: var(--transition);
+}
+
+#homePgeLink:hover {
+  background: var(--white);
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== רספונסיביות ===== */
+@media (max-width: 1024px) {
+  body {
+    overflow-y: auto;
+    height: auto;
+    padding: 10px;
+  }
+
+  #container {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "map"
+      "buttons";
+    grid-template-rows: auto auto auto;
+    height: auto;
+    gap: 15px;
+  }
+
+  #map-container {
+    height: 450px;
+    margin-bottom: 5px;
+  }
+
+  #location-by-buttons {
+    height: auto;
+    padding: 20px;
+  }
+
+  #major-cities {
+    overflow-y: visible;
+  }
+}
+
+@media (max-width: 480px) {
+  #major-cities {
+    grid-template-columns: 1fr 1fr; /* שניים בשורה במובייל */
+  }
+
+  #txt-for-Client {
+    padding-top: 50px; /* מקום לכפתור הבית */
+  }
+}

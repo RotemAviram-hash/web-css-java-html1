@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>משחק הזיכרון | הפרויקט של רותם</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav>
+      <a id="homePgeLink" href="../index.html">חזרה לפורטפוליו</a>
+    </nav>
+
+    <div id="overlay">
+      <div id="levelMenu">
+        <h2>בחרי את רמת הקושי</h2>
+        <div class="level-btns">
+          <button id="easyBtn">קל</button>
+          <button id="mediumBtn">בינוני</button>
+          <button id="hardBtn">קשה</button>
+        </div>
+      </div>
+    </div>
+
+    <main class="game-container">
+      <h1>משחק זיכרון</h1>
+
+      <div class="game-board" id="game-board-id"></div>
+
+      <button id="startOverGame" class="btn-secondary">התחל מחדש 🔁</button>
+    </main>
+
+    <div id="divMsg" class="hidden">
+      <p id="msg"></p>
+      <button id="exitMsgBtn" aria-label="סגור">&times;</button>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

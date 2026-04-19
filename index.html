@@ -1,93 +1,88 @@
-<!DOCTYPE html>
-<html lang="he" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rotem Aviram | CSS Only Portfolio</title>
-    <link href="style.css" rel="stylesheet">
-    
-</head>
-<body>
+<!doctype html>
 
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Rotem Aviram | CSS Only Portfolio</title>
+
+    <link href="style.css" rel="stylesheet" />
+
+    <!--ספריה של אייקוני טכנולוגיות -->
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+    />
+  </head>
+
+  <body>
     <nav>
-        <div class="logo">ROTEM<span>.</span>A</div>
-        <ul>
-            <li><a href="#home">בית</a></li>
-            <li><a href="#projects">פרויקטים</a></li>
-            <li><a href="#about">אודות</a></li>
-        </ul>
+      <div class="logo">ROTEM<span>.</span>A</div>
+
+      <ul>
+        <li><a href="#home">בית</a></li>
+
+        <li><a href="#projects">פרויקטים</a></li>
+
+        <li><a href="#about">אודות</a></li>
+      </ul>
     </nav>
 
     <section id="home" class="hero">
-        <h1>מתכנתת <span class="highlight">FULLSTACK</span>,<br>בשילוב AI</h1>
-        <p> בעידן של היום  <span>הכול</span> אפשרי, אז בואו נחלום בגדול !</p>
-        <a href="#projects" class="contact-btn" style="width: fit-content;">צפייה בעבודות</a>
+      <h1>מתכנתת <span class="highlight">FULLSTACK</span>,<br />בשילוב AI</h1>
+
+      <p>בעידן של היום <span>הכול</span> אפשרי, אז בואו נחלום בגדול !</p>
+
+      <a href="#projects" class="contact-btn">צפייה בעבודות</a>
     </section>
 
     <section id="projects" class="projects">
-        <div class="section-header">
-            <h2>פרויקטים נבחרים</h2>
-        </div>
-        
-        <div class="projects-grid">
-            <div class="card">
-                <div>
-                    <span class="project-tag">Fullstack</span>
-                    <h3>מערכת ניהול נתונים</h3>
-                    <p>אפליקציה לניהול וניתוח נתונים בזמן אמת עם דאשבורד אינטראקטיבי.</p>
-                </div>
-            </div>
-            <div class="card">
-                <div>
-                    <span class="project-tag">Networking</span>
-                    <h3>Infrastructure Logic</h3>
-                    <p>אופטימיזציה של תהליכי רשת ופתרון תקלות תשתית מורכבות.</p>
-                </div>
-            </div>
-            <div class="card">
-                <div>
-                    <span class="project-tag">UI/UX Design</span>
-                    <h3>Portfolio Concept</h3>
-                    <p>עיצוב ממשק מינימליסטי הממוקד בנגישות וחוויית משתמש חלקה.</p>
-                </div>
-            </div>
-            <div class="card">
-                <div>
-                    <span class="project-tag">Backend</span>
-                    <h3>API Security Tool</h3>
-                    <p>כלי לאבטחת ממשקי תכנות וניטור גישות לא מורשות במערכת.</p>
-                </div>
-            </div>
-            <div class="card">
-                <div>
-                    <span class="project-tag">Automation</span>
-                    <h3>Deep Work Helper</h3>
-                    <p>בוט לאוטומציה של משימות חוזרות להגברת הפרודוקטיביות בעבודה.</p>
-                </div>
-            </div>
-            <div class="card">
-                <div>
-                    <span class="project-tag">Logic</span>
-                    <h3>Algorithm Search</h3>
-                    <p>פיתוח מנוע חיפוש פנימי המבוסס על לוגיקה חכמה וסינון נתונים מהיר.</p>
-                </div>
-            </div>
-        </div>
+      <div class="section-header">
+        <h2>פרויקטים נבחרים</h2>
+      </div>
+
+      <div class="projects-grid" id="projects-grid"></div>
     </section>
 
     <section id="about" class="about">
-        <div class="about-box">
-            <h2>מי אני?</h2>
-            <p>השילוב בין הרקע הטכני שלי מעולם ה-IT לבין פיתוח התוכנה מאפשר לי לבנות מוצרים שהם לא רק יפים, אלא גם יציבים וחזקים ברמת התשתית.</p>
-            <p>אני אוהבת לפתור בעיות לוגיות, לכתוב קוד נקי וללמוד טכנולוגיות חדשות כל יום.</p>
-        </div>
+      <div class="about-box">
+        <h2>מי אני?</h2>
+
+        <p>
+          "האמת היא שאני פשוט אוהבת להבין איך דברים עובדים.<br />
+
+          זה התחיל בשירות הצבאי שלי כטכנאית IT, שם למדתי להסתדר עם רשתות ותשתיות
+          מורכבות,<br />
+
+          והמשיך לעולם הפיתוח – כי גיליתי שזה הרבה יותר כיף לבנות את המערכות
+          מאשר רק לתקן אותן.<br />
+
+          אני לא רק כותבת קוד, אני פותרת חידות. אני מחפשת את השילוב בין שקט
+          תעשייתי (תשתית טובה) לבין מוצר שכיף להשתמש בו."<br />
+        </p>
+      </div>
     </section>
 
     <footer>
-        <h2 style="margin-bottom: 2.5rem; font-size: 2.5rem; letter-spacing: -1px;">בואו נבנה משהו יחד</h2>
-        <a href="mailto:your@email.com" class="contact-btn">שלחו לי מייל</a>
-        <p style="margin-top: 4rem; color: var(--gray-text); font-size: 0.8rem; font-weight: 300;">© 2026 רותם אבירם | מפתחת עם דגש על אסתטיקה ודיוק</p>
+      <h2>בואו נבנה משהו יחד</h2>
+      <a href="mailto:rotem.avirm@email.com" class="contact-btn"
+        >שלחו לי מייל</a
+      >
+
+      <p class="footer-copy">© 2026 רותם אבירם | מפתחת עם ראש פתוח</p>
     </footer>
 
-</body>
+    <div id="project-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn">&times;</span>
+
+        <div id="modal-body"></div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
 </html>

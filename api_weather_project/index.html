@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>הדגמת מפה אינטראקטיבית</title>
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="container">
+      <div id="txt-for-Client">
+        <h1>לחץ על המפה או עיר מרשימת הערים</h1>
+        <p id="wether-msg">מזג האוויר בעיר שבחרת הוא :</p>
+      </div>
+
+      <div id="map-container"></div>
+
+      <aside id="location-by-buttons">
+        <h2>ערים מרכזיות לבחירה מהירה</h2>
+        <div id="major-cities"></div>
+      </aside>
+      <a id="homePgeLink" href="../index.html">home</a>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

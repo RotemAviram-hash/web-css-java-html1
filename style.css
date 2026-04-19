@@ -1,274 +1,364 @@
+/* ===== 1. משתנים כלליים (ROOT) ===== */
+:root {
+  /* צבעים */
+  --bg: #ffffff;
+  --text: #1f2937;
+  --white: #ffffff;
+  --accent-soft: #f5f3ff;
+  --accent-medium: #ddd6fe;
+  --accent-deep: #8b5cf6;
+  --accent-glow: rgba(139, 92, 246, 0.15);
+  --gray-text: #6b7280;
+  --border-color: #ede9fe;
+  --modal-overlay: rgba(0, 0, 0, 0.6);
 
-        :root {
-            --bg: #ffffff;
-            --text: #1f2937;
-            --accent-soft: #f5f3ff;
-            --accent-medium: #ddd6fe;
-            --accent-deep: #8b5cf6;
-            --accent-glow: rgba(139, 92, 246, 0.15); /* הילת זוהר עדינה */
-            --border: #ede9fe;
-            --gray-text: #6b7280;
-            --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); /* טרנזישן חלק ויוקרתי */
-        }
+  /* פריסה ומרווחים */
+  --nav-height: 70px;
+  --container-padding: 10%;
+  --section-padding: 8rem var(--container-padding);
+  --card-padding: 2.5rem;
+  --radius-lg: 20px;
+  --radius-md: 12px;
+  --radius-pill: 50px;
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
+  /* טיפוגרפיה */
+  --font-main: "Assistant", sans-serif;
+  --font-mono: "Fira Code", monospace;
 
-        body {
-            font-family: 'Assistant', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden; /* מונע גלילה אופקית בגלל אנימציות רקע */
-        }
+  /* אפקטים ועיצוב מודרני */
+  --blur-nav: blur(12px);
+  --blur-modal: blur(5px);
+  --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  --shadow-hover: 0 20px 50px var(--accent-glow);
+}
 
-        /* ניווט */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 8%;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            z-index: 1000;
-            border-bottom: 1px solid var(--border);
-        }
+/* ===== 2. איפוס והגדרות בסיס ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
 
-        .logo {
-            font-weight: 700;
-            font-size: 1.2rem;
-            position: relative;
-        }
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
 
-        /* אלמנט חי קטן בלוגו */
-        .logo::after {
-            content: '';
-            position: absolute;
-            bottom: -4px; right: 0;
-            width: 0; height: 2px;
-            background: var(--accent-deep);
-            transition: var(--transition);
-        }
+/* הגדרת פוקוס לנגישות */
+:focus-visible {
+  outline: 3px solid var(--accent-medium);
+  outline-offset: 4px;
+}
 
-        .logo:hover::after { width: 100%; }
-        .logo span { color: var(--accent-deep); }
+/* ===== 3. סרגל ניווט ===== */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 8%;
+  position: fixed;
+  width: 100%;
+  height: var(--nav-height);
+  top: 0;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: var(--blur-nav);
+  z-index: 1000; /* מתחת למודאל (2000) */
+  border-bottom: 1px solid var(--border-color);
+}
 
-        nav ul { display: flex; list-style: none; gap: 2rem; }
-        nav a { text-decoration: none; color: var(--text); font-size: 0.9rem; transition: var(--transition); position: relative; }
-        nav a:hover { color: var(--accent-deep); }
+.logo {
+  font-weight: 700;
+  font-size: 1.2rem;
+  position: relative;
+  cursor: pointer;
+}
 
-        /* Hero Section with Moving Gradient Background */
-        .hero {
-            height: 90vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 0 10%;
-            position: relative;
-            background: linear-gradient(135deg, #fff 50%, var(--accent-soft) 100%);
-            background-size: 200% 200%;
-            animation: gradientMove 10s ease infinite; /* אנימציית רקע חיה */
-        }
+.logo::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  right: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent-deep);
+  transition: var(--transition);
+}
 
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+.logo:hover::after {
+  width: 100%;
+}
 
-        .hero h1 {
-            font-size: clamp(2.8rem, 8vw, 5rem);
-            line-height: 1;
-            margin-bottom: 2rem;
-            letter-spacing: -3px;
-            position: relative;
-        }
+.logo span {
+  color: var(--accent-deep);
+}
 
-        /* הדגשה חיה מתחת למילה */
-        .hero h1 span.highlight {
-            color: var(--accent-deep);
-            background: linear-gradient(to bottom, transparent 65%, var(--accent-medium) 65%);
-            background-size: 0% 100%;
-            background-repeat: no-repeat;
-            animation: highlightLoad 1.5s ease forwards 0.5s;
-        }
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
 
-        @keyframes highlightLoad {
-            to { background-size: 100% 100%; }
-        }
+nav a {
+  text-decoration: none;
+  color: var(--text);
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
 
-        .hero p {
-            font-size: 1.3rem;
-            max-width: 600px;
-            color: var(--gray-text);
-            font-weight: 300;
-            margin-bottom: 3rem;
-            opacity: 0;
-            animation: fadeIn 1s ease forwards 1s;
-        }
+nav a:hover {
+  color: var(--accent-deep);
+}
 
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
+/* ===== 4. אזור ראשי (Hero) ===== */
+.hero {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 var(--container-padding);
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    var(--white) 50%,
+    var(--accent-soft) 100%
+  );
+  background-size: 200% 200%;
+  animation: gradientMove 10s ease infinite;
+}
 
-        /* Projects Section */
-        .projects {
-            padding: 8rem 10%;
-            background-color: var(--bg);
-            position: relative;
-        }
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 
-        /* אלמנט דקורטיבי חי ברקע */
-        .projects::before {
-            content: '+ + +';
-            position: absolute;
-            top: 2rem; left: 5%;
-            font-family: 'Fira Code', monospace;
-            color: var(--accent-medium);
-            font-size: 2rem;
-            opacity: 0.3;
-        }
+.hero h1 {
+  font-size: clamp(2.8rem, 8vw, 5rem);
+  line-height: 1.1;
+  margin-bottom: 2rem;
+  letter-spacing: -3px;
+}
 
-        .section-header {
-            margin-bottom: 5rem;
-            border-right: 4px solid var(--accent-medium);
-            padding-right: 1.5rem;
-        }
+.hero h1 span.highlight {
+  color: var(--accent-deep);
+  background: linear-gradient(
+    to bottom,
+    transparent 65%,
+    var(--accent-medium) 65%
+  );
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  animation: highlightLoad 1.5s ease forwards 0.5s;
+}
 
-        .section-header h2 { font-size: 2.2rem; font-weight: 700; }
+@keyframes highlightLoad {
+  to {
+    background-size: 100% 100%;
+  }
+}
 
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
+.hero p {
+  font-size: 1.3rem;
+  max-width: 600px;
+  color: var(--gray-text);
+  font-weight: 300;
+  margin-bottom: 3rem;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards 1s;
+}
 
-        /* Card with Living Hover Effect */
-        .card {
-            background: var(--bg);
-            padding: 2.5rem;
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            position: relative;
-            overflow: hidden;
-        }
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
 
-        /* אפקט הריחוף ה"חי" */
-        .card:hover {
-            border-color: var(--accent-deep);
-            background: var(--bg); /* שומר על רקע לבן */
-            transform: translateY(-10px);
-            /* הילת זוהר סגולה מתפשטת */
-            box-shadow: 0 20px 50px var(--accent-glow);
-        }
+/* ===== 5. אזור פרויקטים ===== */
+.projects {
+  padding: var(--section-padding);
+  background-color: var(--bg);
+  position: relative;
+}
 
-        /* קו סגול חי שנטען בריחוף */
-        .card::after {
-            content: '';
-            position: absolute;
-            bottom: 0; right: 0;
-            width: 0; height: 4px;
-            background: var(--accent-deep);
-            transition: var(--transition);
-        }
+.projects::before {
+  content: "+ + +";
+  position: absolute;
+  top: 2rem;
+  left: 5%;
+  font-family: var(--font-mono);
+  color: var(--accent-medium);
+  font-size: 2rem;
+  opacity: 0.3;
+}
 
-        .card:hover::after { width: 100%; }
+.section-header {
+  margin-bottom: 5rem;
+  border-right: 4px solid var(--accent-medium);
+  padding-right: 1.5rem;
+}
 
-        .project-tag {
-            font-family: 'Fira Code', monospace;
-            font-size: 0.7rem;
-            color: var(--accent-deep);
-            background: var(--accent-soft);
-            padding: 5px 12px;
-            border-radius: 6px;
-            width: fit-content;
-            margin-bottom: 1.2rem;
-            transition: var(--transition);
-        }
+.section-header h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+}
 
-        .card:hover .project-tag { background: var(--accent-medium); }
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
 
-        .card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 0.8rem;
-            font-weight: 600;
-        }
+.card {
+  background: var(--accent-soft);
+  padding: var(--card-padding);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
 
-        .card p {
-            color: var(--gray-text);
-            font-size: 0.95rem;
-            margin-bottom: 2rem;
-            flex-grow: 1; /* דוחף את הפוטר למטה */
-        }
+.card:hover {
+  border-color: var(--accent-deep);
+  background: var(--white);
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-hover);
+}
 
-        /* About Section with Shape */
-        .about {
-            padding: 8rem 10%;
-            background: var(--accent-soft);
-            position: relative;
-        }
+.card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 4px;
+  background: var(--accent-deep);
+  transition: var(--transition);
+}
 
-        /* אלמנט דקורטיבי חי - עיגול עדין */
-        .about::after {
-            content: '';
-            position: absolute;
-            bottom: -50px; right: -50px;
-            width: 200px; height: 200px;
-            background: var(--accent-medium);
-            border-radius: 50%;
-            opacity: 0.2;
-        }
+.card:hover::after {
+  width: 100%;
+}
 
-        .about-box { max-width: 800px; position: relative; z-index: 10; }
-        .about h2 { font-size: 2.5rem; margin-bottom: 2rem; font-weight: 700; }
-        .about p { font-size: 1.2rem; color: var(--text); font-weight: 300; margin-bottom: 1.5rem; }
+.project-tag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--accent-deep);
+  background: var(--accent-soft);
+  padding: 5px 12px;
+  border-radius: 6px;
+  width: fit-content;
+  margin-bottom: 1.2rem;
+  transition: var(--transition);
+}
 
-        /* Contact & Footer */
-        footer {
-            padding: 6rem 10%;
-            text-align: center;
-            background: var(--bg);
-            position: relative;
-        }
+/* ===== 6. אזור אודות ===== */
+.about {
+  padding: var(--section-padding);
+  background: var(--accent-soft);
+  position: relative;
+  overflow: hidden;
+}
 
-        .contact-btn {
-            display: inline-block;
-            padding: 1.2rem 3.5rem;
-            background: var(--accent-deep);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: var(--transition);
-            box-shadow: 0 10px 20px var(--accent-glow);
-        }
+.about-box {
+  max-width: 800px;
+  position: relative;
+  z-index: 10;
+}
 
-        .contact-btn:hover {
-            opacity: 0.95;
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(139, 92, 246, 0.3);
-        }
+/* ===== 7. חלונית מודאל (Modal) ===== */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000; /* מעל הכל */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--modal-overlay);
+  backdrop-filter: var(--blur-modal);
+}
 
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .projects-grid { grid-template-columns: repeat(2, 1fr); }
-        }
+.modal-content {
+  position: relative;
+  background-color: var(--white);
+  margin: 10vh auto;
+  padding: 40px;
+  border-radius: var(--radius-lg);
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: var(--shadow-hover);
+}
 
-        @media (max-width: 700px) {
-            .projects-grid { grid-template-columns: 1fr; gap: 1rem; }
-            .hero h1 { font-size: 3rem; }
-            section { padding: 5rem 8%; }
-        }
-    
+/* ===== 8. כפתורים ופוטר ===== */
+footer {
+  padding: 6rem var(--container-padding);
+  text-align: center;
+  background: var(--bg);
+}
+
+footer h2 {
+  margin-bottom: 2.5rem;
+  font-size: 2.5rem;
+  letter-spacing: -1px;
+}
+
+.footer-copy {
+  margin-top: 4rem;
+  color: var(--gray-text);
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+
+.contact-btn {
+  display: inline-block;
+  padding: 1.2rem 3.5rem;
+  background: var(--accent-deep);
+  color: var(--white);
+  text-decoration: none;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  transition: var(--transition);
+  box-shadow: 0 10px 20px var(--accent-glow);
+  width: fit-content; /* מחליף את ה-inline style */
+  border: none;
+  cursor: pointer;
+}
+
+.contact-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(139, 92, 246, 0.3);
+}
+
+/* ===== 9. Responsive ===== */
+@media (max-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .hero h1 {
+    font-size: 2.8rem;
+    letter-spacing: -1px;
+  }
+}

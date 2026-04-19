@@ -1,0 +1,276 @@
+/* =========================================================
+   1. הגדרת משתנים גלובליים (CSS Variables)
+   שינוי כאן ישפיע על כל צבעי המשחק בבת אחת
+   ========================================================= */
+:root {
+  /* גוונים וצבעים */
+  --primary-color: #837dff;
+  --primary-hover: #6b5bff;
+  --text-main: #463ca1;
+  --text-muted: #636e72;
+
+  /* רקעים וגרדיאנטים */
+  --bg-main: linear-gradient(135deg, #d0c4f7, #b0b8f2);
+  --bg-container: linear-gradient(145deg, #f0f0ff, #e0e0ff);
+  --bg-card-back: linear-gradient(145deg, #dcdcff, #c6c6ff);
+  --bg-card-front: linear-gradient(145deg, #6b5bff, #837dff);
+
+  /* פינות מעוגלות */
+  --radius-lg: 25px;
+  --radius-md: 16px;
+  --radius-sm: 12px;
+  --radius-round: 50px;
+
+  /* אנימציות וצללים */
+  --transition-standard: all 0.3s ease;
+  --transition-flip: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  --shadow-standard: 0 8px 20px rgba(131, 125, 255, 0.3);
+  --shadow-heavy: 0 20px 50px rgba(59, 44, 141, 0.25);
+}
+
+/* =========================================================
+   2. עיצוב בסיסי (Reset & Base Styles)
+   ========================================================= */
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg-main);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  direction: rtl;
+  overflow: hidden; /* מונע גלילה של הדף */
+  box-sizing: border-box;
+  padding: 10px;
+  color: #3b2c8d;
+}
+
+/* =========================================================
+   3. כפתור דף הבית הצף (Home Link)
+   ========================================================= */
+#homePgeLink {
+  position: fixed;
+  top: 25px;
+  right: 25px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px); /* אפקט טשטוש יוקרתי */
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius-round);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: var(--transition-standard);
+}
+
+#homePgeLink:hover {
+  background: #ffffff;
+  color: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* =========================================================
+   4. מבנה המשחק (Game Layout)
+   ========================================================= */
+.game-container {
+  width: 95vw;
+  max-width: 520px;
+  height: 90vh; /* גובה יחסי למניעת גלילה */
+  background: var(--bg-container);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: var(--shadow-heavy);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.game-container h1 {
+  margin: 0 0 15px 0;
+  text-align: center;
+  color: var(--text-main);
+  flex-shrink: 0;
+}
+
+/* לוח המשחק - הגריד מתחלק לפי הגובה הפנוי */
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 12px;
+  width: 100%;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+/* =========================================================
+   5. כרטיסי המשחק (Memory Cards)
+   ========================================================= */
+.card {
+  width: 100%;
+  height: 100%;
+  perspective: 1200px;
+  cursor: pointer;
+}
+
+.inner-card {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-md);
+  position: relative;
+  transform-style: preserve-3d;
+  transition: var(--transition-flip);
+}
+
+.card.flipped .inner-card {
+  transform: rotateY(180deg);
+}
+
+/* הצד הקדמי והאחורי של הקלף */
+.front,
+.back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-md);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: min(8vw, 2.3rem);
+  backface-visibility: hidden;
+  border: 2px solid var(--primary-hover);
+  box-shadow: var(--shadow-standard);
+  box-sizing: border-box;
+}
+
+.front {
+  background: var(--bg-card-front);
+  color: white;
+}
+
+.back {
+  background: var(--bg-card-back);
+  transform: rotateY(180deg);
+  color: var(--text-main);
+}
+
+/* =========================================================
+   6. כפתורים (Buttons)
+   ========================================================= */
+#startOverGame,
+#exitMsgBtn,
+#levelMenu button {
+  background: var(--primary-color);
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: var(--transition-standard);
+}
+
+#startOverGame {
+  margin-top: 15px;
+  border-radius: 18px;
+  padding: 10px 25px;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+#startOverGame:hover {
+  background: var(--primary-hover);
+}
+
+/* =========================================================
+   7. חלוניות מודאליות (Modals & Overlays)
+   ========================================================= */
+#divMsg,
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#divMsg {
+  background: rgba(0, 0, 0, 0.35);
+}
+#overlay {
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+}
+
+#divMsg p {
+  background: var(--bg-card-back);
+  padding: 40px 30px;
+  border-radius: 30px;
+  font-size: 1.8rem;
+  color: var(--text-main);
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+  max-width: 80%;
+}
+
+#exitMsgBtn {
+  border-radius: 20px;
+  width: 120px;
+  height: 50px;
+  font-size: 1.3rem;
+}
+
+/* תפריט רמות קושי */
+#levelMenu {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  max-width: 320px;
+  width: 85%;
+}
+
+#levelMenu h2 {
+  margin-bottom: 20px;
+  color: var(--text-main);
+}
+
+#levelMenu button {
+  margin: 8px 0;
+  padding: 12px;
+  width: 100%;
+  font-size: 1.2rem;
+  border-radius: 15px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* =========================================================
+   8. התאמות למכשירים ניידים (Responsive)
+   ========================================================= */
+@media (max-width: 450px) {
+  .game-container {
+    padding: 12px;
+  }
+  .game-board {
+    gap: 8px;
+  }
+  .game-container h1 {
+    font-size: 1.5rem;
+  }
+}
