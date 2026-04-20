@@ -31,7 +31,7 @@ let canPlay = true;
 let level = 0;
 
 // קבועים לרמות - הערך המספרי שווה לכמות סוגי האייקונים שיהיה
-const EASY = 4;
+const EASY = 6;
 const MEDIUM = 8;
 const HARD = 10;
 
@@ -89,6 +89,8 @@ exitMsgBtn.addEventListener("click", () => {
 function memoryGame() {
   iconPool = shuffleIcons(iconPool);
   setGameCards();
+  bordGameDiv.style.gridTemplateColumns =
+    level === HARD ? "repeat(5, 1fr)" : "repeat(4, 1fr)";
   createGameBordCards();
 }
 
