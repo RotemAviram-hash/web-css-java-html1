@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trivia</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav><a id="homePgeLink" href="../index.html">חזרה לפורטפוליו</a></nav>
+    <main class="quiz-screen">
+      <div class="floating-bg"></div>
+
+      <div class="quiz-card">
+        <div class="top-bar">
+          <div class="badge" id="positive-feedback-container"></div>
+          <div id="lives-container"></div>
+          <div class="timer">
+            <div class="timer-ring"></div>
+            <span id="timer-text">0</span>
+          </div>
+        </div>
+
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+
+        <h2 class="question" id="question"></h2>
+
+        <div class="answers" id="answers"></div>
+      </div>
+    </main>
+    <div id="divMsg" class="hidden">
+      <div id="msgBox">
+        <p id="msg"></p>
+        <button id="exitMsgBtn">&times;</button>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>

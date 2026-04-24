@@ -2,17 +2,11 @@
 const projects = [
   {
     name: "רשימת מטלות",
-
     address: "to_do_list_project",
-
     downloadPath: "to_do_list_project\\to_do_list_download.zip",
-
     tag: "זיכרון ושימוש בנתונים",
-
     id: "to-do-list",
-
-    technologies: ["html5", "css3", "javascript"],
-
+    technologies: ["html5", "css3", "javascript", "sqlite"], // sqlite מייצג כאן את ה-Database/Storage
     desc: `פרוייקט אשר משתמש בזיכרון המקומי של המחשב,<br>
      תוכנה פשוטה אך שימושית לתיעוד משימות הבית או בבית הספר,<br>
     ניתן להוסיף בקלות משימות ובלחיצה על המלל לשנות אם טעיתם :), <br>
@@ -23,17 +17,11 @@ const projects = [
 
   {
     name: "איקס עיגול",
-
     address: "tic_tac_to_project",
-
     downloadPath: "tic_tac_to_project\\tic_tac_to_download.zip",
-
     tag: "משחקי לוח",
-
     id: "tic-tac-to",
-
     technologies: ["html5", "css3", "javascript"],
-
     desc: `פרוייקט משחקי בהשראת המשחק המוכר איקס עיגול,<br>
     מטרת המשחק היא ליצור שורה, טור, או אלכסון בעזרת האייקון X/O  לפני השחקן המתחרה <br>
     כל שנישאר עכשיו זה רק לנסות, להנות ולנצח! `,
@@ -41,17 +29,11 @@ const projects = [
 
   {
     name: "משחק הזיכרון",
-
     address: "memory_game_project",
-
     downloadPath: "memory_game_project\\memory_game_download.zip",
-
     tag: "משחקי לוח",
-
     id: "memory_game",
-
     technologies: ["html5", "css3", "javascript"],
-
     desc: `פרוייקט משחקי המבוסס על המשחק המוכר "משחק הזיכרון"<br>
     למשחק שלוש רמות קושי ללא זמן!<br>
    קחו את הזמן, תרגעו, וגם על הדרך יצא לכם לאמן קצת את שריר הזיכרון, יש יותר טוב מזה?! `,
@@ -59,34 +41,22 @@ const projects = [
 
   {
     name: "לומדת מחשבון",
-
     address: "calculator_project",
-
     downloadPath: "calculator_project\\calculator_download.zip",
-
     tag: "משחקי מילים ולומדות",
-
     id: "calculator",
-
     technologies: ["html5", "css3", "javascript"],
-
     desc: ` פרוייקט לומדת המתטיקה אשר מייצר שאלות רנדומליות על פי הרמה שבה אתה נמצא!
     <br> בין אם תרגול עצמי או הפגת השיעמום הלומדה קלילה ומהנה 
     <br> תהנו ובהצלחה!`,
   },
   {
     name: "תוכנה להצגת מזג האוויר",
-
     address: "api_weather_project",
-
     downloadPath: "api_weather_project\\api_weather_download.zip",
-
     tag: "שימוש בשרתים חיצונים - API",
-
     id: "api_weather",
-
-    technologies: ["html5", "css3", "javascript"],
-
+    technologies: ["html5", "css3", "javascript", "json"], // json מייצג את ה-API Data
     desc: `תוכנה אשר מייבאת מסוכן API את נתוני מזג האוויר <br>
     מדידת מזג האוויר בתוכנה זו מתבצעת כל 15 דקות לכן ייתכנו אי דיוקים קלים<br>
     ניתן לבחור עיר מרשימת הערים הפופולאריות בארץ, <br>
@@ -95,21 +65,27 @@ const projects = [
   },
   {
     name: " תוכנת חיפוש מדינות בעולם",
-
     address: "api_countries_project",
-
     downloadPath: "api_countries_project\\api_countries_download.zip",
-
     tag: "שימוש בשרתים חיצונים - API",
-
     id: "api_countries",
-
-    technologies: ["html5", "css3", "javascript"],
-
+    technologies: ["html5", "css3", "javascript", "json"],
     desc: `תוכנית אשר מתחברת לסוכן API של מדינות בעולם,<br>
    תוכנה אשר מאפשרת חיפוש קל על פי עיר הבירה או שם המדינה, <br>
-    אחרי שימוש בתוכנה הזו מי יוכל עליכם בארץ עיר!?<br>
-    טיפ: זה יעבוד גם אם תרשמו רק חלק משם המדינה או עיר הבירה. `,
+   אחרי שימוש בתוכנה הזו מי יוכל עליכם בארץ עיר!?<br>
+   טיפ: זה יעבוד גם אם תרשמו רק חלק משם המדינה או עיר הבירה. `,
+  },
+  {
+    name: "Smart Quiz - טריוויה באנגלית",
+    address: "trivia_project",
+    downloadPath: "trivia_project\\trivya_download.zip",
+    tag: "שימוש בשרתים חיצוניים - API",
+    id: "trivia_game",
+    technologies: ["html5", "css3", "javascript", "json"],
+    desc: `בחן את הידע הכללי שלך במשחק טריוויה מהיר ומעוצב!<br>
+    השאלות נמשכות בזמן אמת ממאגר שאלות בינלאומי (API),<br>
+    המשחק כולל טיימר מאתגר לכל שאלה, מערכת פסילות (חיים) וחווית משתמש מודרנית.<br>
+    האם תצליחו לענות על כל השאלות לפני שייגמר הזמן?`,
   },
 ];
 
