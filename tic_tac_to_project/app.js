@@ -103,7 +103,7 @@ function isEven() {
   for (let i = 0; i < bord.length; i++) {
     if (bord[i] === "") return false;
   }
-  console.log("sdsdvs");
+
   showMsg("🤝תיקו !!🤝");
   return true;
 }
