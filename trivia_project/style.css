@@ -82,17 +82,83 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-direction: column;
+
   gap: 12px;
 }
 
+.hearts-shake {
+  display: inline-block;
+  animation: shake-hearts 0.5s ease-in-out;
+  animation-iteration-count: 4; /* ירקדו בערך 2 שניות */
+}
+
+@keyframes shake-hearts {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-15deg) scale(1.1);
+  }
+  50% {
+    transform: rotate(15deg) scale(1.1);
+  }
+  75% {
+    transform: rotate(-10deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+}
+
 .badge {
-  background: #e7e8ff;
-  color: var(--primary-dark);
-  padding: 6px 12px;
-  border-radius: var(--radius-small);
-  font-size: 0.75rem;
-  font-weight: 600;
+  display: inline-flex; /* גורם לזה להתכווץ לגודל התוכן */
+  align-items: center;
+  gap: 8px; /* רווח בין העיגול למספר */
+  padding: 4px 12px 4px 4px; /* פדינג קטן בצד שמאל (איפה שהעיגול) וגדול יותר בימין */
+
+  background: rgba(255, 255, 255, 0.4); /* רקע זכוכית שקוף */
+  backdrop-filter: blur(5px); /* אפקט טשטוש למראה יוקרתי */
+  border-radius: 50px; /* צורת קפסולה */
+  border: 1px solid rgba(255, 255, 255, 0.6);
+
+  font-weight: 700;
+  color: var(--primary-dark); /* הצבע הכהה של האתר שלך */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* צל עדין מאוד מתחת לכל הקפסולה */
+}
+
+.badge span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  font-size: 1rem;
+
+  animation: fire-dance 1.5s infinite alternate ease-in-out; /* שיניתי את השם וקיצרתי קצת את הזמן ל-1.5s כדי שהריקוד יהיה יותר תוסס */
+}
+
+/* האנימציה החדשה - האש הרוקדת */
+@keyframes fire-dance {
+  0% {
+    transform: rotate(-3deg) translateY(0);
+    box-shadow: 0 0 10px rgba(255, 125, 18, 0.4);
+  }
+  25% {
+    transform: rotate(3deg) translateY(-1px); /* עולה קצת ונוטה ימינה */
+    box-shadow: 0 0 15px rgba(255, 125, 18, 0.6);
+  }
+  50% {
+    transform: rotate(-2deg) translateY(0); /* חוזרת שמאלה */
+    box-shadow: 0 0 12px rgba(255, 170, 0, 0.5); /* שינוי גוון עדין */
+  }
+  75% {
+    transform: rotate(4deg) translateY(-1px); /* נוטה חזק ימינה */
+    box-shadow: 0 0 18px rgba(255, 125, 18, 0.7);
+  }
+  100% {
+    transform: rotate(-3deg) translateY(0);
+    box-shadow: 0 0 10px rgba(255, 125, 18, 0.4);
+  }
 }
 
 /* Timer */

@@ -1,4 +1,4 @@
-const AMOUNT_OF_QUESTIONS = 5;
+const AMOUNT_OF_QUESTIONS = 10;
 const LIFE_AMOUNT = 5;
 const TIME_PER_QUESTION = 15;
 const START_POINT = 0;
@@ -120,6 +120,7 @@ function appendQuestionAndAnswers(_question) {
     answersContainer.append(answer);
 
     // הוספת מאזין בדיקה לכל תשובה //
+    console.log(correctAnswer);
     answer.addEventListener("click", () => {
       if (canPlay()) checkAnswer(answer, possibleAnswer, correctAnswer);
     });
@@ -135,26 +136,24 @@ function startTimer() {
   if (canPlay()) {
     clearTimer(); // מוודא שאין טיימרים קודמים שרצים ברקע
 
-    // עדכון מיידי של ה-UI לפני שהאינטרוול מתחיל
     timerText.innerText = timeLeft;
 
     timer = setInterval(() => {
-      timeLeft--; // קודם כל מורידים זמן
+      timeLeft--;
 
       if (timeLeft < 0) {
-        // בודקים אם עברנו את האפס
         clearInterval(timer);
         loseLife();
         nextQuestion();
       } else {
-        timerText.innerText = timeLeft; // עדכון המספר בכל שנייה
+        timerText.innerText = timeLeft;
       }
     }, 1000);
   }
 }
 
 /**
- *
+ * מאפס את טיימר
  */
 function clearTimer() {
   clearInterval(timer);
@@ -258,6 +257,10 @@ function loseLife() {
     first.remove();
     appendFeedbackIcon("💔", livesContainer);
   }
+  livesContainer.classList.add("hearts-shake");
+  setTimeout(() => {
+    livesContainer.classList.remove("hearts-shake");
+  }, 500);
   correctAnswerCounter = 0;
   removeFeedbackIcons(positiveFeedbackContainer);
 }
@@ -335,6 +338,7 @@ function clear() {
   progressFill.style.width = `${START_POINT}%`; // איפוס הבר
 
   addHearts();
+  removeFeedbackIcons(positiveFeedbackContainer);
   clearTimer();
   falseAnswerCounter = START_POINT;
   correctAnswerCounter = START_POINT;
