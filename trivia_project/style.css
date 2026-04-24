@@ -228,8 +228,6 @@ body {
 
 .answer:hover {
   transform: translateY(-3px);
-  background: var(--primary);
-  color: white;
 }
 
 .answer.correct {

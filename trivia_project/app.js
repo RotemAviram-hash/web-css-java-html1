@@ -121,7 +121,7 @@ function appendQuestionAndAnswers(_question) {
 
     // הוספת מאזין בדיקה לכל תשובה //
     console.log(correctAnswer);
-    answer.addEventListener("click", () => {
+    answer.addEventListener("click", (event) => {
       if (canPlay()) checkAnswer(answer, possibleAnswer, correctAnswer);
     });
   });
@@ -169,6 +169,7 @@ function clearTimer() {
  */
 function checkAnswer(_answer, _possibleAnswer, _correctAnswer) {
   clearTimer();
+
   if (_possibleAnswer === _correctAnswer) {
     _answer.className = "answer correct";
     correctAnswerProgress();
