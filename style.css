@@ -46,8 +46,17 @@ body {
   color: var(--text);
   line-height: 1.6;
   overflow-x: hidden;
+  direction: rtl; /* כיווניות מימין לשמאל */
+  text-align: right; /* יישור טקסט לימין כברירת מחדל */
 }
 
+p,
+h1,
+h2,
+h3,
+span {
+  unicode-bidi: plaintext;
+}
 /* הגדרת פוקוס לנגישות */
 :focus-visible {
   outline: 3px solid var(--accent-medium);
@@ -281,10 +290,11 @@ nav a:hover {
 }
 
 /* ===== 7. חלונית מודאל (Modal) ===== */
+
 .modal {
   display: none;
   position: fixed;
-  z-index: 2000; /* מעל הכל */
+  z-index: 2000;
   left: 0;
   top: 0;
   width: 100%;
@@ -296,13 +306,80 @@ nav a:hover {
 .modal-content {
   position: relative;
   background-color: var(--white);
-  margin: 10vh auto;
+  margin: 5vh auto;
   padding: 40px;
   border-radius: var(--radius-lg);
-  width: 90%;
-  max-width: 500px;
-  text-align: center;
+  width: 95%;
+  max-width: 850px;
   box-shadow: var(--shadow-hover);
+}
+
+/* סידור במחשב: שתי עמודות */
+.modal-flex-container {
+  display: flex;
+  gap: 40px;
+  direction: ltr; /* טקסט משמאל, תמונה מימין */
+  align-items: flex-start;
+}
+
+.modal-content-col {
+  flex: 1.6;
+  text-align: center;
+}
+
+.modal-title {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+.modal-desc {
+  line-height: 1.8;
+  font-size: 1.05rem;
+  color: var(--gray-text);
+}
+
+.modal-side-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modal-img {
+  width: 100%;
+  max-height: 250px;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--accent-soft);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+/* מוודא שהמכולה של הכפתורים נותנת להם להימתח */
+.modal-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* רווח קבוע בין הכפתורים */
+  width: 100%; /* תופס את כל רוחב העמודה */
+  align-items: stretch; /* הפקודה שגורמת לכולם להיות באותו אורך */
+}
+
+/* הגדרה לכפתורים עצמם בתוך המודאל */
+.modal-buttons .contact-btn,
+.modal-buttons .small-btn {
+  width: 100% !important; /* כולם נמתחים לאותו אורך בדיוק */
+  display: block !important;
+  text-align: center !important;
+  padding: 0.8rem 1.5rem !important; /* אחידות בנפח */
+  box-sizing: border-box !important;
+}
+
+.secondary-btn {
+  background: var(--accent-soft) !important;
+  color: var(--accent-deep) !important;
+  box-shadow: none !important;
 }
 
 /* ===== 8. כפתורים ופוטר ===== */
@@ -346,19 +423,57 @@ footer h2 {
 }
 
 /* ===== 9. Responsive ===== */
+
+/* טאבלטים */
 @media (max-width: 1024px) {
   .projects-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 700px) {
+/* מובייל */
+@media (max-width: 768px) {
+  /* שחזור רספונסיביות אתר כללית */
   .projects-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
+
   .hero h1 {
     font-size: 2.8rem;
     letter-spacing: -1px;
+  }
+
+  /* תיקון המודאל למובייל */
+  .modal-content {
+    padding: 30px 20px !important;
+    width: 92% !important;
+    text-align: center !important;
+  }
+
+  .modal-flex-container {
+    flex-direction: column !important;
+    direction: rtl !important; /* חזרה לעברית */
+    align-items: center !important;
+    gap: 15px !important;
+  }
+
+  .modal-img {
+    display: none !important; /* העלמת תמונה במובייל */
+  }
+
+  .modal-content-col,
+  .modal-side-col,
+  .modal-buttons {
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  /* הכפתורים נמתחים לרוחב הטקסט אך לא נוגעים במסגרת */
+  .modal-content .small-btn {
+    padding: 1.2rem !important;
+    font-size: 1.1rem !important;
+    margin-bottom: 10px !important;
+    box-sizing: border-box !important;
   }
 }

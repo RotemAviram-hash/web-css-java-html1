@@ -13,6 +13,7 @@ const projects = [
     כמובן שגם פה ישנה האפשרות לתעד סיום משימה או מחיקתה ,<br>
     עכשיו רק נשאר לנסות !
     `,
+    img: "info_img\\to_do_list_project_photo.png",
   },
 
   {
@@ -25,6 +26,7 @@ const projects = [
     desc: `פרוייקט משחקי בהשראת המשחק המוכר איקס עיגול,<br>
     מטרת המשחק היא ליצור שורה, טור, או אלכסון בעזרת האייקון X/O  לפני השחקן המתחרה <br>
     כל שנישאר עכשיו זה רק לנסות, להנות ולנצח! `,
+    img: "info_img\\tic_tac_to_project_photo.png",
   },
 
   {
@@ -37,6 +39,7 @@ const projects = [
     desc: `פרוייקט משחקי המבוסס על המשחק המוכר "משחק הזיכרון"<br>
     למשחק שלוש רמות קושי ללא זמן!<br>
    קחו את הזמן, תרגעו, וגם על הדרך יצא לכם לאמן קצת את שריר הזיכרון, יש יותר טוב מזה?! `,
+    img: "info_img\\memory_game_project_photo.png",
   },
 
   {
@@ -49,6 +52,7 @@ const projects = [
     desc: ` פרוייקט לומדת המתטיקה אשר מייצר שאלות רנדומליות על פי הרמה שבה אתה נמצא!
     <br> בין אם תרגול עצמי או הפגת השיעמום הלומדה קלילה ומהנה 
     <br> תהנו ובהצלחה!`,
+    img: "info_img\\calculator_project_photo.png",
   },
   {
     name: "תוכנה להצגת מזג האוויר",
@@ -62,6 +66,7 @@ const projects = [
     ניתן לבחור עיר מרשימת הערים הפופולאריות בארץ, <br>
     או להניח את הסמן על המפה - 
     <br>טיפ: זה יעבוד על כל מקום בעולם תנסו!  `,
+    img: "info_img\\api_weather_project_photo.png",
   },
   {
     name: " תוכנת חיפוש מדינות בעולם",
@@ -74,6 +79,7 @@ const projects = [
    תוכנה אשר מאפשרת חיפוש קל על פי עיר הבירה או שם המדינה, <br>
    אחרי שימוש בתוכנה הזו מי יוכל עליכם בארץ עיר!?<br>
    טיפ: זה יעבוד גם אם תרשמו רק חלק משם המדינה או עיר הבירה. `,
+    img: "info_img\\api_countries_project_photo.png",
   },
   {
     name: "Smart Quiz - טריוויה באנגלית",
@@ -86,6 +92,7 @@ const projects = [
     השאלות נמשכות בזמן אמת ממאגר שאלות בינלאומי (API),<br>
     המשחק כולל טיימר מאתגר לכל שאלה, מערכת פסילות (חיים) וחווית משתמש מודרנית.<br>
     האם תצליחו לענות על כל השאלות לפני שייגמר הזמן?`,
+    img: "info_img\\trivia_project_photo.png",
   },
 ];
 
@@ -145,12 +152,23 @@ function addInfoInProjectCard(_card, _projectCard) {
   //בכל לחיצה על הכרטיס יופיע המידע שמתאים לכרטיס הרלוונטי//
   _card.addEventListener("click", () => {
     modalBody.innerHTML = `
-        <h2 style="margin-top: 10px">${_projectCard.name}</h2>
-        <div class="tech-stack"> ${techIcons}</div>  
-        <p style="margin: 20px 0">${_projectCard.desc}</p>
-        <a href="${_projectCard.address}/index.html" class="contact-btn" style="display: inline-block; text-decoration: none;">כניסה לפרויקט</a>
-        <a href="${_projectCard.downloadPath}" download class="contact-btn" style="background: var(--accent-soft); color: var(--accent-deep);">הורד ZIP</a>
-          `;
+        <div class="modal-flex-container">
+            <div class="modal-content-col">
+                <h2 style="margin-top: 0; margin-bottom: 10px;">${_projectCard.name}</h2>
+                <div class="tech-stack">${techIcons}</div>  
+                <p class="modal-desc">${_projectCard.desc}</p>
+                
+            </div>
+            <div style = "flex">
+                <img src="${_projectCard.img}" alt="${_projectCard.name}" class="modal-img">
+                <div class="modal-buttons">
+                    <a href="${_projectCard.address}/index.html" class="contact-btn small-btn">כניסה לפרויקט</a>
+                    <a href="${_projectCard.downloadPath}" download class="contact-btn small-btn secondary-btn">הורד ZIP</a>
+                </div>
+              </div>
+            </div>
+        </div>
+    `;
     modal.style.display = "block";
   });
 }
